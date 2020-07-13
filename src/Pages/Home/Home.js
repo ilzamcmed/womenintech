@@ -23,7 +23,6 @@ class Home extends Component {
         const response = await Api.get(`/biographies?page=${page}`);
         const { docs, ...biographyInfo } = response.data
         
-        console.log(docs)
 
         this.setState({ biographies: docs, page, biographyInfo })
     }
