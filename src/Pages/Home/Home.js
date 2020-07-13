@@ -55,15 +55,15 @@ console.log(docs)
             <div className="list__women">
                 {biographies.map(item =>
                     ( // esse () é o retorn do map
-                        <div >
+                        
                             <Cards
-                                key={item._id}
+                                id={item._id}
                                 nome={item.nome}
                                 description={item.description}
                                 acesso={`/biography/${item._id}`}
                             />
 
-                        </div>
+                        
                     )
                 )}
                 <div className="actions">
