@@ -21,12 +21,11 @@ class Home extends Component {
     //nessa função, usa o async/await para esperar carrecar a API e o response é a resposta da API
     loadBiobraphies = async (page = 1) => {
         const response = await Api.get(`/biographies?page=${page}`);
-
         const { docs, ...biographyInfo } = response.data
-
+        
+        console.log(docs)
 
         this.setState({ biographies: docs, page, biographyInfo })
-        console.log("página que estou", page)
     }
 
     nextPage = () => {
