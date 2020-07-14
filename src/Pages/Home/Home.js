@@ -14,16 +14,16 @@ class Home extends Component {
     }
 
     //assim que minha plicação for montada, chamo o didmount, eu carrego as biografias
-    componentDidMount() {
-        this.loadBiobraphies()
+    componentDidMount = async () => {
+        await this.loadBiobraphies()
     }
 
     //nessa função, usa o async/await para esperar carrecar a API e o response é a resposta da API
     loadBiobraphies = async (page = 1) => {
         const response = await Api.get(`/biographies?page=${page}`);
         const { docs, ...biographyInfo } = response.data
-        
-console.log(docs)
+
+        // console.log(docs)
         this.setState({ biographies: docs, page, biographyInfo })
     }
 
@@ -51,21 +51,27 @@ console.log(docs)
     render() {
         const { biographies, page } = this.state
 
+        console.log(biographies)
         return (
             <div className="list__women">
-                {biographies.map(item =>
-                    ( // esse () é o retorn do map
-                        
+
+                {biographies.length ? biographies.map(item =>
+
+                        ( // esse () é o retorn do map
                             <Cards
-                                id={item._id}
+                                key={item._id}
                                 nome={item.nome}
                                 description={item.description}
                                 acesso={`/biography/${item._id}`}
+
                             />
 
-                        
-                    )
-                )}
+
+                        )
+
+                ) :
+                    <h1>Loading...</h1>
+                }
                 <div className="actions">
                     <Button
                         disabled={page === 1}
@@ -73,10 +79,10 @@ console.log(docs)
                         acao="Anterior" />
 
                     <Button
-                        disabled={page === 2} 
+                        disabled={page === 2}
                         onClick={this.nextPage}
                         acao="Próximo"
-                        />
+                    />
                 </div>
             </div>
         );

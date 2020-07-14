@@ -2,9 +2,9 @@ import React from 'react';
 import './Cards.css';
 import { Link } from 'react-router-dom'
 
-const Cards = ({ id, nome, description, url, acesso }) => {
+const Cards = ({ key, nome, description, url, acesso }) => {
     return (
-        <article key={id}>
+        <article id={key}>
             <strong className="list__women-name">{nome}</strong>
             <p className="list__women-description">{description}</p>
             {/* <a href={url} className="list__women-link">Veja mais</a> */}
